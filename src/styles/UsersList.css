@@ -1,0 +1,29 @@
+.users {
+  text-align: center;
+}
+
+.users {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 20px;
+}
+
+.users div {
+  padding: 20px;
+  margin: 5px 10px;
+  box-shadow: 0 3px 5px #333;
+  transition: 0.5s;
+}
+
+.users div {
+  background-color: rgb(116, 153, 255);
+  color: #fff;
+  text-shadow: 1px 1px #333;
+}
+
+.users div:hover {
+  transform: scale(1.018);
+}
