@@ -1,35 +1,43 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import "./../styles/App.css";
+
 import Nav from "./Nav";
 import UsersList from "./UsersList";
+import Map from "./RestaurantsMap";
 import About from "./About";
 import Search from "./Search";
 import ButtonFetchUsers from "./ButtonFetchUsers";
 import FormNewRestaurant from "./FormNewRestaurant";
-import token from './../tokens/tokenMM.js'
+
+import token from "./../tokens/tokenMM.js";
 
 class App extends Component {
   state = {
     restaurants: [],
 
     restaurantsFiltred: [],
-    searchName: '',
+    searchName: "",
 
     name: "",
     city: "",
     district: "",
     street: "",
     number: "",
+    lat: 0,
+    lng: 0,
 
     isSend: false,
     allOK: false,
+
+    markersOnMap: [],
   };
 
   handleFetch = () => {
     fetch("https://restaurantdotnetapi.herokuapp.com/restaurants")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         this.setState({
           restaurants: data,
         });
@@ -46,8 +54,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const url =
-      `https://restaurantdotnetapi.herokuapp.com/restaurants?token=${token}`;
+    const url = `https://restaurantdotnetapi.herokuapp.com/restaurants?token=${token}`;
 
     const data = {
       name: this.state.name,
@@ -57,6 +64,10 @@ class App extends Component {
         street: this.state.street,
         buildingNumber: this.state.number,
         apartmentNumber: "1",
+        coordinates: {
+          latitude: this.state.lat,
+          longitude: this.state.lng,
+        },
       },
     };
 
@@ -65,7 +76,9 @@ class App extends Component {
       this.state.city === "" ||
       this.state.district === "" ||
       this.state.street === "" ||
-      this.state.number === ""
+      this.state.number === "" ||
+      this.state.lat === "" ||
+      this.state.lng === ""
     ) {
       console.log("puste");
       this.setState({
@@ -108,41 +121,43 @@ class App extends Component {
 
   handleSearchNameChange = (e) => {
     this.setState({
-      searchName: e.target.value
-    })
-  }
+      searchName: e.target.value,
+    });
+  };
 
   handleSearch = (e) => {
-    e.preventDefault()
-    const url = `https://restaurantdotnetapi.herokuapp.com/restaurants?query=${this.state.searchName}`
+    e.preventDefault();
+    const url = `https://restaurantdotnetapi.herokuapp.com/restaurants?query=${
+      this.state.searchName
+    }`;
     fetch(url)
-      .then(data => data.json())
-      .then(data => this.setState({
-        restaurantsFiltred: data,
-        searchName: ''
-      }))
-      .catch(err => Error("Error"))
-
-  }
+      .then((data) => data.json())
+      .then((data) =>
+        this.setState({
+          restaurantsFiltred: data,
+          searchName: "",
+        })
+      )
+      .catch((err) => Error("Error"));
+  };
 
   componentDidMount() {
-    const url = 'https://restaurantdotnetapi.herokuapp.com/restaurants';
+    // fetch API
+    const url = "https://restaurantdotnetapi.herokuapp.com/restaurants";
     fetch(url)
-      .then(data => {
-        console.log(data)
-        if (!data.ok) throw new Error("Error with data fetching from the server")
-        return data.json()
+      .then((data) => {
+        console.log(data);
+        if (!data.ok)
+          throw new Error("Error with data fetching from the server");
+        return data.json();
       })
-      .then(res => {
-        console.log(res)
-        return (
-          this.setState({
-            restaurants: res
-          })
-        )
-      }
-      )
-      .catch(err => Error("błąd"))
+      .then((res) => {
+        console.log(res);
+        return this.setState({
+          restaurants: res,
+        });
+      })
+      .catch((err) => Error("błąd"));
   }
 
   render() {
@@ -163,6 +178,8 @@ class App extends Component {
               district={this.state.district}
               street={this.state.street}
               number={this.state.number}
+              lat={this.state.lat}
+              lng={this.state.lng}
               isSend={this.state.isSend}
               allOK={this.state.allOK}
             />
@@ -178,7 +195,11 @@ class App extends Component {
               restaurantsFiltred={this.state.restaurantsFiltred}
               searchName={this.state.searchName}
               handleSearchNameChange={this.handleSearchNameChange}
-              handleSearch={this.handleSearch} />
+              handleSearch={this.handleSearch}
+            />
+          </Route>
+          <Route path="/maps">
+            <Map />
           </Route>
         </>
       </Router>

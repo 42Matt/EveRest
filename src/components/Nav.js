@@ -19,6 +19,9 @@ const Nav = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/maps">Mapa</NavLink>
+          </li>
+          <li>
             <NavLink to="/search">Wyszukiwarka</NavLink>
           </li>
           <li>

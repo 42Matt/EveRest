@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.submit-restaurant{
+.submit-restaurant {
   width: 30%;
   margin: 50px auto;
   padding: 35px 20px;
@@ -17,7 +17,7 @@
   transition: 0.5s;
 }
 
- .submit-restaurant:hover {
+.submit-restaurant:hover {
   transform: scale(1.015);
 }
 
@@ -31,6 +31,11 @@
   padding: 5px 8px;
   border-radius: 5px;
   border: 2px solid #999;
+}
+
+#lat,
+#lng {
+  width: 40%;
 }
 
 .submit-restaurant input:focus {

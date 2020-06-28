@@ -62,6 +62,24 @@ const FormNewRestaurant = (props) => {
           onChange={props.handleChange}
         />
         <br />
+        <label htmlFor="lat">Sz. geo. (latitude):</label>
+        <input
+          type="number"
+          id="lat"
+          name="lat"
+          value={props.lat}
+          onChange={props.handleChange}
+        />
+        <br />
+        <label htmlFor="lng">Dł. geo. (longitude):</label>
+        <input
+          type="number"
+          id="lng"
+          name="lng"
+          value={props.lng}
+          onChange={props.handleChange}
+        />
+        <br />
         <button type="submit">Dodaj Restaurację</button>
       </form>
       {props.isSend ? AddedRestAlert : null}
