@@ -10,6 +10,7 @@ import About from "./About";
 import Search from "./Search";
 import ButtonFetchUsers from "./ButtonFetchUsers";
 import FormNewRestaurant from "./FormNewRestaurant";
+import LoginInterface from "./LoginInterface";
 
 import token from "./../tokens/tokenMM.js";
 
@@ -200,6 +201,9 @@ class App extends Component {
           </Route>
           <Route path="/maps">
             <Map />
+          </Route>
+          <Route path="/login">
+            <LoginInterface />
           </Route>
         </>
       </Router>

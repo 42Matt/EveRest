@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./../styles/Nav.css";
 import logo from "./../images/eve-rest-logo-ss.png";
+import loginIcon from "./../images/user.png";
 
 const Nav = () => {
   return (
@@ -29,6 +30,11 @@ const Nav = () => {
           </li>
           <li>
             <NavLink to="/post">Dodaj restaurację</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" className="login-icon">
+              <img src={loginIcon} alt="login icon" />
+            </NavLink>
           </li>
         </ul>
       </nav>
