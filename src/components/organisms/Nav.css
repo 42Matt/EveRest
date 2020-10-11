@@ -1,0 +1,74 @@
+nav {
+  padding: 20px;
+  margin-bottom: 50px;
+  background-image: linear-gradient(
+    45deg,
+    rgb(170, 213, 248),
+    70%,
+    rgb(147, 194, 233)
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 5px #333;
+}
+.img-container {
+  width: 250px;
+  padding: 5px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: -1px 3px 3px 1px #333;
+  transition: 0.3s;
+}
+.img-container img {
+  width: 100%;
+}
+
+.img-container:hover {
+  transform: scale(1.015);
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  list-style: none;
+  padding: 5px 10px;
+}
+
+nav ul li a {
+  padding: 5px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #000;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #fff;
+}
+
+nav ul li a.active {
+  border-bottom: 2px solid #fff;
+}
+
+a.login-icon:hover,
+a.login-icon.active,
+a.login-icon {
+  border: none;
+  display: inline-block;
+  /* padding: 5px; */
+}
+
+.login-icon img {
+  width: 50%;
+  transition: 0.3s;
+}
+.login-icon img:hover {
+  transform: scale(1.15);
+}

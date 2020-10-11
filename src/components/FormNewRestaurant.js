@@ -1,14 +1,10 @@
-import React from "react";
-import "./../styles/FormNewRestaurant.css";
+import React from 'react';
+import 'styles/FormNewRestaurant.css';
 
 const FormNewRestaurant = (props) => {
   const AddedRestAlert = (
     <div className="alert-container">
-      <h2>
-        {props.allOK
-          ? `Wysłano nową restaurację.`
-          : `Wpisz poprawnie wszystkie dane.`}
-      </h2>
+      <h2>{props.allOK ? `Wysłano nową restaurację.` : `Wpisz poprawnie wszystkie dane.`}</h2>
       <button className="btn-alert" onClick={props.handleAlertBtn}>
         Zamknij
       </button>
@@ -18,22 +14,10 @@ const FormNewRestaurant = (props) => {
     <>
       <form className="submit-restaurant" onSubmit={props.handleSubmit}>
         <label htmlFor="name">Nazwa restauracji:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={props.name}
-          onChange={props.handleChange}
-        />
+        <input type="text" id="name" name="name" value={props.name} onChange={props.handleChange} />
         <br />
         <label htmlFor="city">Miasto:</label>
-        <input
-          type="text"
-          id="city"
-          name="city"
-          value={props.city}
-          onChange={props.handleChange}
-        />
+        <input type="text" id="city" name="city" value={props.city} onChange={props.handleChange} />
         <br />
         <label htmlFor="district">Dzielnica:</label>
         <input
@@ -63,22 +47,10 @@ const FormNewRestaurant = (props) => {
         />
         <br />
         <label htmlFor="lat">Sz. geo. (latitude):</label>
-        <input
-          type="number"
-          id="lat"
-          name="lat"
-          value={props.lat}
-          onChange={props.handleChange}
-        />
+        <input type="number" id="lat" name="lat" value={props.lat} onChange={props.handleChange} />
         <br />
         <label htmlFor="lng">Dł. geo. (longitude):</label>
-        <input
-          type="number"
-          id="lng"
-          name="lng"
-          value={props.lng}
-          onChange={props.handleChange}
-        />
+        <input type="number" id="lng" name="lng" value={props.lng} onChange={props.handleChange} />
         <br />
         <button type="submit">Dodaj Restaurację</button>
       </form>

@@ -1,5 +1,5 @@
-import React from "react";
-import "./../styles/UsersList.css";
+import React from 'react';
+import 'styles/UsersList.css';
 
 const UsersList = (props) => {
   const users = props.restaurants.map((restaurant) => (

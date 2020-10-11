@@ -1,5 +1,5 @@
-import React from "react";
-import "./../styles/ButtonFetchUsers.css";
+import React from 'react';
+import 'styles/ButtonFetchUsers.css';
 
 const ButtonFetchUsers = (props) => {
   return (

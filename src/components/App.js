@@ -1,42 +1,44 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import "./../styles/App.css";
+import '../styles/App.css';
 
-import Nav from "./Nav";
-import UsersList from "./UsersList";
-import Map from "./RestaurantsMap";
-import About from "./About";
-import Search from "./Search";
-import ButtonFetchUsers from "./ButtonFetchUsers";
-import FormNewRestaurant from "./FormNewRestaurant";
-import LoginInterface from "./LoginInterface";
-
-import token from "./../tokens/tokenMM.js";
+import token from 'tokens/tokenMM';
+import Nav from './Nav';
+import UsersList from './UsersList';
+import Map from './RestaurantsMap';
+import About from './About';
+import Search from './Search';
+import ButtonFetchUsers from './ButtonFetchUsers';
+import FormNewRestaurant from './FormNewRestaurant';
+import LoginInterface from './LoginInterface';
 
 class App extends Component {
-  state = {
-    restaurants: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      restaurants: [],
 
-    restaurantsFiltred: [],
-    searchName: "",
+      restaurantsFiltred: [],
+      searchName: '',
 
-    name: "",
-    city: "",
-    district: "",
-    street: "",
-    number: "",
-    lat: 0,
-    lng: 0,
+      name: '',
+      city: '',
+      district: '',
+      street: '',
+      number: '',
+      lat: 0,
+      lng: 0,
 
-    isSend: false,
-    allOK: false,
+      isSend: false,
+      allOK: false,
 
-    markersOnMap: [],
-  };
+      markersOnMap: [],
+    };
+  }
 
   handleFetch = () => {
-    fetch("https://restaurantdotnetapi.herokuapp.com/restaurants")
+    fetch('https://restaurantdotnetapi.herokuapp.com/restaurants')
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -46,8 +48,8 @@ class App extends Component {
   };
 
   handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
     this.setState({
       [name]: value,
     });
@@ -64,7 +66,7 @@ class App extends Component {
         cityDistrict: this.state.district,
         street: this.state.street,
         buildingNumber: this.state.number,
-        apartmentNumber: "1",
+        apartmentNumber: '1',
         coordinates: {
           latitude: this.state.lat,
           longitude: this.state.lng,
@@ -73,25 +75,25 @@ class App extends Component {
     };
 
     if (
-      this.state.name === "" ||
-      this.state.city === "" ||
-      this.state.district === "" ||
-      this.state.street === "" ||
-      this.state.number === "" ||
-      this.state.lat === "" ||
-      this.state.lng === ""
+      this.state.name === '' ||
+      this.state.city === '' ||
+      this.state.district === '' ||
+      this.state.street === '' ||
+      this.state.number === '' ||
+      this.state.lat === '' ||
+      this.state.lng === ''
     ) {
-      console.log("puste");
+      console.log('puste');
       this.setState({
         allOK: false,
         isSend: true,
       });
     } else {
       fetch(url, {
-        method: "POST",
-        mode: "cors",
+        method: 'POST',
+        mode: 'cors',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
@@ -99,15 +101,15 @@ class App extends Component {
           console.log(res);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error('Error:', error);
         });
 
       this.setState({
-        name: "",
-        city: "",
-        district: "",
-        street: "",
-        number: "",
+        name: '',
+        city: '',
+        district: '',
+        street: '',
+        number: '',
         isSend: true,
         allOK: true,
       });
@@ -128,28 +130,26 @@ class App extends Component {
 
   handleSearch = (e) => {
     e.preventDefault();
-    const url = `https://restaurantdotnetapi.herokuapp.com/restaurants?query=${
-      this.state.searchName
-    }`;
+    const url = `https://restaurantdotnetapi.herokuapp.com/restaurants?query=${this.state.searchName}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) =>
         this.setState({
           restaurantsFiltred: data,
-          searchName: "",
-        })
+          searchName: '',
+        }),
       )
-      .catch((err) => Error("Error"));
+      .catch((err) => Error('Error'));
   };
 
   componentDidMount() {
     // fetch API
-    const url = "https://restaurantdotnetapi.herokuapp.com/restaurants";
+    const url = 'https://restaurantdotnetapi.herokuapp.com/restaurants';
+    console.log('componentDidMount from App.js');
     fetch(url)
       .then((data) => {
         console.log(data);
-        if (!data.ok)
-          throw new Error("Error with data fetching from the server");
+        if (!data.ok) throw new Error('Error with data fetching from the server');
         return data.json();
       })
       .then((res) => {
@@ -158,7 +158,7 @@ class App extends Component {
           restaurants: res,
         });
       })
-      .catch((err) => Error("błąd"));
+      .catch((err) => Error('błąd'));
   }
 
   render() {

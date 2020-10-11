@@ -1,8 +1,8 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "./../styles/Nav.css";
-import logo from "./../images/eve-rest-logo-ss.png";
-import loginIcon from "./../images/user.png";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import 'styles/Nav.css';
+import logo from 'images/eve-rest-logo-ss.png';
+import loginIcon from 'images/user.png';
 
 const Nav = () => {
   return (
